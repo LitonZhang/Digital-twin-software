@@ -1,0 +1,196 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Opc.Ua.Configuration</name>
+    </assembly>
+    <members>
+        <member name="T:Opc.Ua.Configuration.IApplicationMessageDlg">
+            <summary>
+            Interface to create application callbacks.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Configuration.IApplicationMessageDlg.Message(System.String,System.Boolean)">
+            <summary>
+            The application message.
+            </summary>
+            <param name="text">The text of the message.</param>
+            <param name="ask">If the application should ask the user.</param>
+        </member>
+        <member name="M:Opc.Ua.Configuration.IApplicationMessageDlg.ShowAsync">
+            <summary>
+            Show the message and return result.
+            </summary>
+        </member>
+        <member name="T:Opc.Ua.Configuration.ApplicationInstance">
+            <summary>
+            A class that install, configures and runs a UA application.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Configuration.ApplicationInstance.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Opc.Ua.Configuration.ApplicationInstance"/> class.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Configuration.ApplicationInstance.#ctor(Opc.Ua.ApplicationConfiguration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Opc.Ua.Configuration.ApplicationInstance"/> class.
+            </summary>
+            <param name="applicationConfiguration">The application configuration.</param>
+        </member>
+        <member name="P:Opc.Ua.Configuration.ApplicationInstance.ApplicationName">
+            <summary>
+            Gets or sets the name of the application.
+            </summary>
+            <value>The name of the application.</value>
+        </member>
+        <member name="P:Opc.Ua.Configuration.ApplicationInstance.ApplicationType">
+            <summary>
+            Gets or sets the type of the application.
+            </summary>
+            <value>The type of the application.</value>
+        </member>
+        <member name="P:Opc.Ua.Configuration.ApplicationInstance.ConfigSectionName">
+            <summary>
+            Gets or sets the name of the config section containing the path to the application configuration file.
+            </summary>
+            <value>The name of the config section.</value>
+        </member>
+        <member name="P:Opc.Ua.Configuration.ApplicationInstance.ConfigurationType">
+            <summary>
+            Gets or sets the type of configuration file.
+            </summary>
+            <value>The type of configuration file.</value>
+        </member>
+        <member name="P:Opc.Ua.Configuration.ApplicationInstance.Server">
+            <summary>
+            Gets the server.
+            </summary>
+            <value>The server.</value>
+        </member>
+        <member name="P:Opc.Ua.Configuration.ApplicationInstance.ApplicationConfiguration">
+            <summary>
+            Gets the application configuration used when the Start() method was called.
+            </summary>
+            <value>The application configuration.</value>
+        </member>
+        <member name="P:Opc.Ua.Configuration.ApplicationInstance.NoGdsAgentAdmin">
+            <summary>
+            Gets or sets a flag that indicates whether the application will be set up for management with the GDS agent.
+            </summary>
+            <value>If true the application will not be visible to the GDS local agent after installation.</value>
+        </member>
+        <member name="P:Opc.Ua.Configuration.ApplicationInstance.MessageDlg">
+            <summary>
+            Get or set the message dialog.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Configuration.ApplicationInstance.ProcessCommandLine">
+            <summary>
+            Processes the command line.
+            </summary>
+            <returns>
+            True if the arguments were processed; False otherwise.
+            </returns>
+        </member>
+        <member name="M:Opc.Ua.Configuration.ApplicationInstance.StartAsService(Opc.Ua.ServerBase)">
+            <summary>
+            Starts the UA server as a Windows Service.
+            </summary>
+            <param name="server">The server.</param>
+        </member>
+        <member name="M:Opc.Ua.Configuration.ApplicationInstance.Start(Opc.Ua.ServerBase)">
+            <summary>
+            Starts the UA server.
+            </summary>
+            <param name="server">The server.</param>
+        </member>
+        <member name="M:Opc.Ua.Configuration.ApplicationInstance.Stop">
+            <summary>
+            Stops the UA server.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Configuration.ApplicationInstance.FixupAppConfig(Opc.Ua.ApplicationConfiguration)">
+            <summary>
+            Helper to replace localhost with the hostname
+            in the application uri and base adresses of the
+            configuration.
+            </summary>
+            <param name="configuration"></param>
+        </member>
+        <member name="M:Opc.Ua.Configuration.ApplicationInstance.LoadAppConfig(System.Boolean,System.String,Opc.Ua.ApplicationType,System.Type,System.Boolean)">
+            <summary>
+            Loads the configuration.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Configuration.ApplicationInstance.LoadApplicationConfiguration(System.String,System.Boolean)">
+            <summary>
+            Loads the application configuration.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Configuration.ApplicationInstance.LoadApplicationConfiguration(System.Boolean)">
+            <summary>
+            Loads the application configuration.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Configuration.ApplicationInstance.CheckApplicationInstanceCertificate(System.Boolean,System.UInt16)">
+            <summary>
+            Checks for a valid application instance certificate.
+            </summary>
+            <param name="silent">if set to <c>true</c> no dialogs will be displayed.</param>
+            <param name="minimumKeySize">Minimum size of the key.</param>
+        </member>
+        <member name="M:Opc.Ua.Configuration.ApplicationInstance.CheckApplicationInstanceCertificate(System.Boolean,System.UInt16,System.UInt16)">
+            <summary>
+            Checks for a valid application instance certificate.
+            </summary>
+            <param name="silent">if set to <c>true</c> no dialogs will be displayed.</param>
+            <param name="minimumKeySize">Minimum size of the key.</param>
+            <param name="lifeTimeInMonths">The lifetime in months.</param>
+        </member>
+        <member name="M:Opc.Ua.Configuration.ApplicationInstance.CertificateValidator_CertificateValidation(Opc.Ua.CertificateValidator,Opc.Ua.CertificateValidationEventArgs)">
+            <summary>
+            Handles a certificate validation error.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Configuration.ApplicationInstance.CheckApplicationInstanceCertificate(Opc.Ua.ApplicationConfiguration,System.Security.Cryptography.X509Certificates.X509Certificate2,System.Boolean,System.UInt16)">
+            <summary>
+            Creates an application instance certificate if one does not already exist.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Configuration.ApplicationInstance.CheckDomainsInCertificate(Opc.Ua.ApplicationConfiguration,System.Security.Cryptography.X509Certificates.X509Certificate2,System.Boolean)">
+            <summary>
+            Checks that the domains in the server addresses match the domains in the certificates.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Configuration.ApplicationInstance.CreateApplicationInstanceCertificate(Opc.Ua.ApplicationConfiguration,System.UInt16,System.UInt16)">
+            <summary>
+            Creates the application instance certificate.
+            </summary>
+            <param name="configuration">The configuration.</param>
+            <param name="keySize">Size of the key.</param>
+            <param name="lifeTimeInMonths">The lifetime in months.</param>
+            <returns>The new certificate</returns>
+        </member>
+        <member name="M:Opc.Ua.Configuration.ApplicationInstance.DeleteApplicationInstanceCertificate(Opc.Ua.ApplicationConfiguration)">
+            <summary>
+            Deletes an existing application instance certificate.
+            </summary>
+            <param name="configuration">The configuration instance that stores the configurable information for a UA application.</param>
+        </member>
+        <member name="M:Opc.Ua.Configuration.ApplicationInstance.AddToTrustedStore(Opc.Ua.ApplicationConfiguration,System.Security.Cryptography.X509Certificates.X509Certificate2)">
+            <summary>
+            Adds the certificate to the Trusted Certificate Store
+            </summary>
+            <param name="configuration">The application's configuration which specifies the location of the TrustedStore.</param>
+            <param name="certificate">The certificate to register.</param>
+        </member>
+        <member name="M:Opc.Ua.Configuration.ApplicationInstance.ApproveMessage(System.String,System.Boolean)">
+            <summary>
+            Show a message for approval and return result.
+            </summary>
+            <param name="message"></param>
+            <param name="silent"></param>
+            <returns>True if approved, false otherwise.</returns>
+        </member>
+    </members>
+</doc>

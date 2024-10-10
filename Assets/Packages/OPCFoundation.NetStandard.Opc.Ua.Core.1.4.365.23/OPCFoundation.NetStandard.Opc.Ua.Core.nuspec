@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>OPCFoundation.NetStandard.Opc.Ua.Core</id>
+    <version>1.4.365.23</version>
+    <authors>OPC Foundation</authors>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <license type="file">licenses/LICENSE.txt</license>
+    <licenseUrl>https://aka.ms/deprecateLicenseUrl</licenseUrl>
+    <icon>images/logo.jpg</icon>
+    <projectUrl>https://github.com/OPCFoundation/UA-.NETStandard</projectUrl>
+    <description>OPC UA Core Class Library</description>
+    <releaseNotes>https://github.com/OPCFoundation/UA-.NETStandard/releases</releaseNotes>
+    <copyright>Copyright © 2004-2020 OPC Foundation, Inc</copyright>
+    <tags>OPCFoundation OPC-UA netstandard ios linux dotnet net netcore uwp</tags>
+    <repository type="git" url="https://github.com/OPCFoundation/UA-.NETStandard" commit="4afac20c63a578189c124897378cf7fe7992c440" />
+    <dependencies>
+      <group targetFramework=".NETFramework4.6.2">
+        <dependency id="OPCFoundation.NetStandard.Opc.Ua.Security.Certificates" version="1.4.365.23" exclude="Build,Analyzers" />
+        <dependency id="Newtonsoft.Json" version="12.0.3" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="OPCFoundation.NetStandard.Opc.Ua.Security.Certificates" version="1.4.365.23" exclude="Build,Analyzers" />
+        <dependency id="Newtonsoft.Json" version="12.0.3" exclude="Build,Analyzers" />
+        <dependency id="System.Data.Common" version="4.3.0" exclude="Build,Analyzers" />
+        <dependency id="System.Net.NameResolution" version="4.3.0" exclude="Build,Analyzers" />
+        <dependency id="System.ServiceModel.Primitives" version="4.8.0" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard2.1">
+        <dependency id="OPCFoundation.NetStandard.Opc.Ua.Security.Certificates" version="1.4.365.23" exclude="Build,Analyzers" />
+        <dependency id="Newtonsoft.Json" version="12.0.3" exclude="Build,Analyzers" />
+        <dependency id="System.Data.Common" version="4.3.0" exclude="Build,Analyzers" />
+        <dependency id="System.Net.NameResolution" version="4.3.0" exclude="Build,Analyzers" />
+        <dependency id="System.ServiceModel.Primitives" version="4.8.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.Security" targetFramework=".NETFramework4.6.2" />
+      <frameworkAssembly assemblyName="System.ServiceModel" targetFramework=".NETFramework4.6.2" />
+    </frameworkAssemblies>
+  </metadata>
+</package>

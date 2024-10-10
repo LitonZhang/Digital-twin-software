@@ -1,0 +1,1759 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Opc.Ua.Gds.Server.Common</name>
+    </assembly>
+    <members>
+        <member name="M:Opc.Ua.Gds.Server.Database.ApplicationsDatabaseBase.Match(System.String,System.String)">
+            <summary>
+            Returns true if the target string matches the UA pattern string. 
+            The pattern string may include UA wildcards %_\[]!
+            </summary>
+            <param name="target">String to check for a pattern match.</param>
+            <param name="pattern">Pattern to match with the target string.</param>
+            <returns>true if the target string matches the pattern, otherwise false.</returns>
+        </member>
+        <member name="M:Opc.Ua.Gds.Server.Database.ApplicationsDatabaseBase.IsMatchPattern(System.String)">
+            <summary>
+            Returns true if the pattern string contains a UA pattern. 
+            The pattern string may include UA wildcards %_\[]!
+            </summary>
+        </member>
+        <member name="T:Opc.Ua.Gds.Server.Database.Linq.JsonApplicationsDatabase">
+            <summary>
+            A GDS database with JSON storage.
+            </summary>
+            <remarks>
+            This db is good for testing but not for production use.
+            </remarks>
+        </member>
+        <member name="M:Opc.Ua.Gds.Server.Database.Linq.JsonApplicationsDatabase.#ctor(System.String)">
+            <summary>
+            Create a JSON database.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.Server.Database.Linq.JsonApplicationsDatabase.Load(System.String)">
+            <summary>
+            Load the JSON application database.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.Server.Database.Linq.JsonApplicationsDatabase.Save">
+            <summary>
+            Save the complete database.
+            </summary>
+        </member>
+        <member name="P:Opc.Ua.Gds.Server.Database.Linq.JsonApplicationsDatabase.FileName">
+            <summary>
+            Get or set the filename.
+            </summary>
+        </member>
+        <member name="T:Opc.Ua.Gds.Server.Database.IApplicationsDatabase">
+            <summary>
+            An abstract interface to the application database
+            </summary>
+        </member>
+        <member name="T:Opc.Ua.Gds.Server.ApplicationsNodeManager">
+            <summary>
+            A node manager for a global discovery server
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.Server.ApplicationsNodeManager.#ctor(Opc.Ua.Server.IServerInternal,Opc.Ua.ApplicationConfiguration,Opc.Ua.Gds.Server.Database.IApplicationsDatabase,Opc.Ua.Gds.Server.ICertificateRequest,Opc.Ua.Gds.Server.ICertificateGroup,System.Boolean)">
+            <summary>
+            Initializes the node manager.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.Server.ApplicationsNodeManager.Dispose(System.Boolean)">
+            <summary>
+            An overrideable version of the Dispose.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.Server.ApplicationsNodeManager.New(Opc.Ua.ISystemContext,Opc.Ua.NodeState)">
+            <summary>
+            Creates the NodeId for the specified node.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.Server.ApplicationsNodeManager.CreateAddressSpace(System.Collections.Generic.IDictionary{Opc.Ua.NodeId,System.Collections.Generic.IList{Opc.Ua.IReference}})">
+            <summary>
+            Does any initialization required before the address space can be used.
+            </summary>
+            <remarks>
+            The externalReferences is an out parameter that allows the node manager to link to nodes
+            in other node managers. For example, the 'Objects' node is managed by the CoreNodeManager and
+            should have a reference to the root folder node(s) exposed by this node manager.  
+            </remarks>
+        </member>
+        <member name="M:Opc.Ua.Gds.Server.ApplicationsNodeManager.LoadPredefinedNodes(Opc.Ua.ISystemContext)">
+            <summary>
+            Loads a node set from a file or resource and adds them to the set of predefined nodes.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.Server.ApplicationsNodeManager.AddBehaviourToPredefinedNode(Opc.Ua.ISystemContext,Opc.Ua.NodeState)">
+            <summary>
+            Replaces the generic node with a node specific to the model.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.Server.ApplicationsNodeManager.DeleteAddressSpace">
+            <summary>
+            Frees any resources allocated for the address space.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.Server.ApplicationsNodeManager.GetManagerHandle(Opc.Ua.Server.ServerSystemContext,Opc.Ua.NodeId,System.Collections.Generic.IDictionary{Opc.Ua.NodeId,Opc.Ua.NodeState})">
+            <summary>
+            Returns a unique handle for the node.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.Server.ApplicationsNodeManager.ValidateNode(Opc.Ua.Server.ServerSystemContext,Opc.Ua.Server.NodeHandle,System.Collections.Generic.IDictionary{Opc.Ua.NodeId,Opc.Ua.NodeState})">
+            <summary>
+            Verifies that the specified node exists.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.Server.ApplicationsNodeManager.GenerateNodeId">
+            <summary>
+            Generates a new node id.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.Server.CertificateGroup.NewKeyPairRequestAsync(Opc.Ua.Gds.ApplicationRecordDataType,System.String,System.String[],System.String,System.String)">
+            <summary>
+            Create a certificate with a new key pair signed by the CA of the cert group.
+            </summary>
+            <param name="application">The application record.</param>
+            <param name="subjectName">The subject of the certificate.</param>
+            <param name="domainNames">The domain names for the subject alt name extension.</param>
+            <param name="privateKeyFormat">The private key format as PFX or PEM.</param>
+            <param name="privateKeyPassword">A password for the private key.</param>
+        </member>
+        <member name="M:Opc.Ua.Gds.Server.CertificateGroup.LoadSigningKeyAsync(System.Security.Cryptography.X509Certificates.X509Certificate2,System.String)">
+            <summary>
+            load the authority signing key.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.Server.CertificateGroup.RevokeCertificateAsync(System.String,System.Security.Cryptography.X509Certificates.X509Certificate2,System.String)">
+            <summary>
+            Revoke the CA signed certificate. 
+            The issuer CA public key, the private key and the crl reside in the storepath.
+            The CRL number is increased by one and existing CRL for the issuer are deleted from the store.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.Server.CertificateGroup.UpdateAuthorityCertInTrustedList">
+            <summary>
+            Updates the certificate authority certificate and CRL in the trusted list.
+            </summary>
+        </member>
+        <member name="T:Opc.Ua.Gds.Server.GlobalDiscoverySampleServer">
+            <summary>
+            Implements a sample Global Discovery Server.
+            </summary>
+            <remarks>
+            Each server instance must have one instance of a StandardServer object which is
+            responsible for reading the configuration file, creating the endpoints and dispatching
+            incoming requests to the appropriate handler.
+            
+            This sub-class specifies non-configurable metadata such as Product Name and initializes
+            the ApplicationNodeManager which provides access to the data exposed by the Global Discovery Server.
+            
+            </remarks>
+        </member>
+        <member name="M:Opc.Ua.Gds.Server.GlobalDiscoverySampleServer.OnServerStarted(Opc.Ua.Server.IServerInternal)">
+            <summary>
+            Called after the server has been started.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.Server.GlobalDiscoverySampleServer.CreateMasterNodeManager(Opc.Ua.Server.IServerInternal,Opc.Ua.ApplicationConfiguration)">
+            <summary>
+            Creates the node managers for the server.
+            </summary>
+            <remarks>
+            This method allows the sub-class create any additional node managers which it uses. The SDK
+            always creates a CoreNodeManager which handles the built-in nodes defined by the specification.
+            Any additional NodeManagers are expected to handle application specific nodes.
+            </remarks>
+        </member>
+        <member name="M:Opc.Ua.Gds.Server.GlobalDiscoverySampleServer.LoadServerProperties">
+            <summary>
+            Loads the non-configurable properties for the application.
+            </summary>
+            <remarks>
+            These properties are exposed by the server but cannot be changed by administrators.
+            </remarks>
+        </member>
+        <member name="M:Opc.Ua.Gds.Server.GlobalDiscoverySampleServer.ValidateRequest(Opc.Ua.RequestHeader,Opc.Ua.Server.RequestType)">
+            <summary>
+            This method is called at the being of the thread that processes a request.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.Server.GlobalDiscoverySampleServer.OnRequestComplete(Opc.Ua.Server.OperationContext)">
+            <summary>
+            This method is called in a finally block at the end of request processing (i.e. called even on exception).
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.Server.GlobalDiscoverySampleServer.SessionManager_ImpersonateUser(Opc.Ua.Server.Session,Opc.Ua.Server.ImpersonateEventArgs)">
+            <summary>
+            Called when a client tries to change its user identity.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.Server.GlobalDiscoverySampleServer.VerifyUserTokenCertificate(System.Security.Cryptography.X509Certificates.X509Certificate2)">
+            <summary>
+            Verifies that a certificate user token is trusted.
+            </summary>
+        </member>
+        <member name="T:Opc.Ua.Gds.Server.GlobalDiscoveryServerConfiguration">
+            <summary>
+            Stores the configuration the data access node manager.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.Server.GlobalDiscoveryServerConfiguration.#ctor">
+            <summary>
+            The default constructor.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.Server.GlobalDiscoveryServerConfiguration.Initialize(System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes the object during deserialization.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.Server.GlobalDiscoveryServerConfiguration.Initialize">
+            <summary>
+            Sets private members to default values.
+            </summary>
+        </member>
+        <member name="T:Opc.Ua.Gds.Server.CertificateGroupConfiguration">
+            <summary>
+            Stores the configuration the data access node manager.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.Server.CertificateGroupConfiguration.#ctor">
+            <summary>
+            The default constructor.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.Server.CertificateGroupConfiguration.Initialize(System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes the object during deserialization.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.Server.CertificateGroupConfiguration.Initialize">
+            <summary>
+            Sets private members to default values.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.Server.CertificateGroupConfigurationCollection.#ctor">
+            <summary>
+            Initializes an empty collection.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.Server.CertificateGroupConfigurationCollection.#ctor(System.Collections.Generic.IEnumerable{Opc.Ua.Gds.Server.CertificateGroupConfiguration})">
+            <summary>
+            Initializes the collection from another collection.
+            </summary>
+            <param name="collection">A collection of values to add to this new collection</param>
+            <exception cref="T:System.ArgumentNullException">
+            	<paramref name="collection"/> is null.
+            </exception>
+        </member>
+        <member name="M:Opc.Ua.Gds.Server.CertificateGroupConfigurationCollection.#ctor(System.Int32)">
+            <summary>
+            Initializes the collection with the specified capacity.
+            </summary>
+            <param name="capacity">The capacity.</param>
+        </member>
+        <member name="T:Opc.Ua.Gds.Server.ICertificateGroup">
+            <summary>
+            An abstract interface to the certificate provider
+            </summary>
+        </member>
+        <member name="T:Opc.Ua.Gds.Server.CertificateRequestState">
+            <summary>
+            The state of a certificate request.
+            </summary>
+        </member>
+        <member name="F:Opc.Ua.Gds.Server.CertificateRequestState.New">
+            <summary>
+            The certificate request is New.
+            </summary>
+        </member>
+        <member name="F:Opc.Ua.Gds.Server.CertificateRequestState.Approved">
+            <summary>
+            The certificate request is Approved.
+            </summary>
+        </member>
+        <member name="F:Opc.Ua.Gds.Server.CertificateRequestState.Rejected">
+            <summary>
+            The certificate request is Rejected.
+            </summary>
+        </member>
+        <member name="F:Opc.Ua.Gds.Server.CertificateRequestState.Accepted">
+            <summary>
+            The certificate request is Accepted.
+            </summary>
+        </member>
+        <member name="T:Opc.Ua.Gds.Server.ICertificateRequest">
+            <summary>
+            An abstract interface to the application database
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.Server.ICertificateRequest.Initialize">
+            <summary>
+            Initialize a certificate request.
+            </summary>
+        </member>
+        <member name="P:Opc.Ua.Gds.Server.ICertificateRequest.NamespaceIndex">
+            <summary>
+            The namesapce index.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.Server.ICertificateRequest.StartSigningRequest(Opc.Ua.NodeId,System.String,System.String,System.Byte[],System.String)">
+            <summary>
+            Start a signing request for an application.
+            </summary>
+            <param name="applicationId">The id of the application.</param>
+            <param name="certificateGroupId">The target group for the signing request.</param>
+            <param name="certificateTypeId">The certificate type.</param>
+            <param name="certificateRequest">The certificate signing request (CSR).</param>
+            <param name="authorityId">The authority requesting the certificate.</param>
+            <returns>The id of the signing request.</returns>
+        </member>
+        <member name="M:Opc.Ua.Gds.Server.ICertificateRequest.StartNewKeyPairRequest(Opc.Ua.NodeId,System.String,System.String,System.String,System.String[],System.String,System.String,System.String)">
+            <summary>
+            Start a request for a new key pair.
+            </summary>
+            <param name="applicationId">The id of the application.</param>
+            <param name="certificateGroupId">The target group for the signing request.</param>
+            <param name="certificateTypeId">The certificate type.</param>
+            <param name="subjectName">The subject for the certificate</param>
+            <param name="domainNames">The domain names for the certficate.</param>
+            <param name="privateKeyFormat">The private key format, PEM or PFX.</param>
+            <param name="privateKeyPassword">The password for the private key.</param>
+            <param name="authorityId">The authority requesting the certificate.</param>
+            <returns>The id of the key pair request.</returns>
+        </member>
+        <member name="M:Opc.Ua.Gds.Server.ICertificateRequest.ApproveRequest(Opc.Ua.NodeId,System.Boolean)">
+            <summary>
+            Approve or reject a request.
+            </summary>
+            <param name="requestId">The id of the request.</param>
+            <param name="isRejected">Whether the request is rejected.</param>
+        </member>
+        <member name="M:Opc.Ua.Gds.Server.ICertificateRequest.AcceptRequest(Opc.Ua.NodeId,System.Byte[])">
+            <summary>
+            Accept the request.
+            </summary>
+            <param name="requestId">The request id.</param>
+            <param name="certificate">The accepted certificate.</param>
+        </member>
+        <member name="M:Opc.Ua.Gds.Server.ICertificateRequest.FinishRequest(Opc.Ua.NodeId,Opc.Ua.NodeId,System.String@,System.String@,System.Byte[]@,System.Byte[]@)">
+            <summary>
+            Finish the request.
+            </summary>
+            <param name="applicationId">The id of the application.</param>
+            <param name="requestId">The request id.</param>
+            <param name="certificateGroupId">The group id.</param>
+            <param name="certificateTypeId">The certificate type.</param>
+            <param name="signedCertificate">The signed certificate.</param>
+            <param name="privateKey">The private key, if requested.</param>
+        </member>
+        <member name="M:Opc.Ua.Gds.Server.ICertificateRequest.ReadRequest(Opc.Ua.NodeId,Opc.Ua.NodeId,System.String@,System.String@,System.Byte[]@,System.String@,System.String[]@,System.String@,System.String@)">
+            <summary>
+            Read a certificate request.
+            </summary>
+            <param name="applicationId">The id of the application.</param>
+            <param name="requestId">The request id.</param>
+            <param name="certificateGroupId">The group id.</param>
+            <param name="certificateTypeId">The certificate type.</param>
+            <param name="certificateRequest"></param>
+            <param name="subjectName">The subject for the certificate</param>
+            <param name="domainNames">The domain names for the certficate.</param>
+            <param name="privateKeyFormat">The private key format, PEM or PFX.</param>
+            <param name="privateKeyPassword">The password for the private key.</param>
+        </member>
+        <member name="T:Opc.Ua.Gds.Server.GdsRole">
+            <summary>
+            The supported roles in a GDS server.
+            </summary>
+        </member>
+        <member name="F:Opc.Ua.Gds.Server.GdsRole.ApplicationAdmin">
+            <summary>
+            The GDS application Administrator.
+            </summary>
+        </member>
+        <member name="F:Opc.Ua.Gds.Server.GdsRole.ApplicationUser">
+            <summary>
+            The GDS application user.
+            </summary>
+        </member>
+        <member name="T:Opc.Ua.Gds.Server.RoleBasedIdentity">
+            <summary>
+            The role based identity for a GDS server.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.Server.RoleBasedIdentity.#ctor(Opc.Ua.IUserIdentity,Opc.Ua.Gds.Server.GdsRole)">
+            <summary>
+            Initialize the role based identity.
+            </summary>
+        </member>
+        <member name="P:Opc.Ua.Gds.Server.RoleBasedIdentity.GrantedRoleIds">
+            <inheritdoc/>
+        </member>
+        <member name="P:Opc.Ua.Gds.Server.RoleBasedIdentity.Role">
+            <summary>
+            The role in the context of a Gds.
+            </summary>
+        </member>
+        <member name="P:Opc.Ua.Gds.Server.RoleBasedIdentity.DisplayName">
+            <inheritdoc/>
+        </member>
+        <member name="P:Opc.Ua.Gds.Server.RoleBasedIdentity.PolicyId">
+            <inheritdoc/>
+        </member>
+        <member name="P:Opc.Ua.Gds.Server.RoleBasedIdentity.TokenType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Opc.Ua.Gds.Server.RoleBasedIdentity.IssuedTokenType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Opc.Ua.Gds.Server.RoleBasedIdentity.SupportsSignatures">
+            <inheritdoc/>
+        </member>
+        <member name="M:Opc.Ua.Gds.Server.RoleBasedIdentity.GetIdentityToken">
+            <inheritdoc/>
+        </member>
+        <member name="T:Opc.Ua.Gds.FindApplicationsMethodState">
+            <summary>
+            Stores an instance of the FindApplicationsMethodType Method.
+            </summary>
+            <exclude />
+        </member>
+        <member name="M:Opc.Ua.Gds.FindApplicationsMethodState.#ctor(Opc.Ua.NodeState)">
+            <summary>
+            Initializes the type with its default attribute values.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.FindApplicationsMethodState.Construct(Opc.Ua.NodeState)">
+            <summary>
+            Constructs an instance of a node.
+            </summary>
+            <param name="parent">The parent.</param>
+            <returns>The new node.</returns>
+        </member>
+        <member name="M:Opc.Ua.Gds.FindApplicationsMethodState.Initialize(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the instance.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.FindApplicationsMethodState.InitializeOptionalChildren(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the any option children defined for the instance.
+            </summary>
+        </member>
+        <member name="F:Opc.Ua.Gds.FindApplicationsMethodState.OnCall">
+            <summary>
+            Raised when the the method is called.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.FindApplicationsMethodState.Call(Opc.Ua.ISystemContext,Opc.Ua.NodeId,System.Collections.Generic.IList{System.Object},System.Collections.Generic.IList{System.Object})">
+            <summary>
+            Invokes the method, returns the result and output argument.
+            </summary>
+        </member>
+        <member name="T:Opc.Ua.Gds.FindApplicationsMethodStateMethodCallHandler">
+            <summary>
+            Used to receive notifications when the method is called.
+            </summary>
+            <exclude />
+        </member>
+        <member name="T:Opc.Ua.Gds.RegisterApplicationMethodState">
+            <summary>
+            Stores an instance of the RegisterApplicationMethodType Method.
+            </summary>
+            <exclude />
+        </member>
+        <member name="M:Opc.Ua.Gds.RegisterApplicationMethodState.#ctor(Opc.Ua.NodeState)">
+            <summary>
+            Initializes the type with its default attribute values.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.RegisterApplicationMethodState.Construct(Opc.Ua.NodeState)">
+            <summary>
+            Constructs an instance of a node.
+            </summary>
+            <param name="parent">The parent.</param>
+            <returns>The new node.</returns>
+        </member>
+        <member name="M:Opc.Ua.Gds.RegisterApplicationMethodState.Initialize(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the instance.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.RegisterApplicationMethodState.InitializeOptionalChildren(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the any option children defined for the instance.
+            </summary>
+        </member>
+        <member name="F:Opc.Ua.Gds.RegisterApplicationMethodState.OnCall">
+            <summary>
+            Raised when the the method is called.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.RegisterApplicationMethodState.Call(Opc.Ua.ISystemContext,Opc.Ua.NodeId,System.Collections.Generic.IList{System.Object},System.Collections.Generic.IList{System.Object})">
+            <summary>
+            Invokes the method, returns the result and output argument.
+            </summary>
+        </member>
+        <member name="T:Opc.Ua.Gds.RegisterApplicationMethodStateMethodCallHandler">
+            <summary>
+            Used to receive notifications when the method is called.
+            </summary>
+            <exclude />
+        </member>
+        <member name="T:Opc.Ua.Gds.UpdateApplicationMethodState">
+            <summary>
+            Stores an instance of the UpdateApplicationMethodType Method.
+            </summary>
+            <exclude />
+        </member>
+        <member name="M:Opc.Ua.Gds.UpdateApplicationMethodState.#ctor(Opc.Ua.NodeState)">
+            <summary>
+            Initializes the type with its default attribute values.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.UpdateApplicationMethodState.Construct(Opc.Ua.NodeState)">
+            <summary>
+            Constructs an instance of a node.
+            </summary>
+            <param name="parent">The parent.</param>
+            <returns>The new node.</returns>
+        </member>
+        <member name="M:Opc.Ua.Gds.UpdateApplicationMethodState.Initialize(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the instance.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.UpdateApplicationMethodState.InitializeOptionalChildren(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the any option children defined for the instance.
+            </summary>
+        </member>
+        <member name="F:Opc.Ua.Gds.UpdateApplicationMethodState.OnCall">
+            <summary>
+            Raised when the the method is called.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.UpdateApplicationMethodState.Call(Opc.Ua.ISystemContext,Opc.Ua.NodeId,System.Collections.Generic.IList{System.Object},System.Collections.Generic.IList{System.Object})">
+            <summary>
+            Invokes the method, returns the result and output argument.
+            </summary>
+        </member>
+        <member name="T:Opc.Ua.Gds.UpdateApplicationMethodStateMethodCallHandler">
+            <summary>
+            Used to receive notifications when the method is called.
+            </summary>
+            <exclude />
+        </member>
+        <member name="T:Opc.Ua.Gds.UnregisterApplicationMethodState">
+            <summary>
+            Stores an instance of the UnregisterApplicationMethodType Method.
+            </summary>
+            <exclude />
+        </member>
+        <member name="M:Opc.Ua.Gds.UnregisterApplicationMethodState.#ctor(Opc.Ua.NodeState)">
+            <summary>
+            Initializes the type with its default attribute values.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.UnregisterApplicationMethodState.Construct(Opc.Ua.NodeState)">
+            <summary>
+            Constructs an instance of a node.
+            </summary>
+            <param name="parent">The parent.</param>
+            <returns>The new node.</returns>
+        </member>
+        <member name="M:Opc.Ua.Gds.UnregisterApplicationMethodState.Initialize(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the instance.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.UnregisterApplicationMethodState.InitializeOptionalChildren(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the any option children defined for the instance.
+            </summary>
+        </member>
+        <member name="F:Opc.Ua.Gds.UnregisterApplicationMethodState.OnCall">
+            <summary>
+            Raised when the the method is called.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.UnregisterApplicationMethodState.Call(Opc.Ua.ISystemContext,Opc.Ua.NodeId,System.Collections.Generic.IList{System.Object},System.Collections.Generic.IList{System.Object})">
+            <summary>
+            Invokes the method, returns the result and output argument.
+            </summary>
+        </member>
+        <member name="T:Opc.Ua.Gds.UnregisterApplicationMethodStateMethodCallHandler">
+            <summary>
+            Used to receive notifications when the method is called.
+            </summary>
+            <exclude />
+        </member>
+        <member name="T:Opc.Ua.Gds.GetApplicationMethodState">
+            <summary>
+            Stores an instance of the GetApplicationMethodType Method.
+            </summary>
+            <exclude />
+        </member>
+        <member name="M:Opc.Ua.Gds.GetApplicationMethodState.#ctor(Opc.Ua.NodeState)">
+            <summary>
+            Initializes the type with its default attribute values.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.GetApplicationMethodState.Construct(Opc.Ua.NodeState)">
+            <summary>
+            Constructs an instance of a node.
+            </summary>
+            <param name="parent">The parent.</param>
+            <returns>The new node.</returns>
+        </member>
+        <member name="M:Opc.Ua.Gds.GetApplicationMethodState.Initialize(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the instance.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.GetApplicationMethodState.InitializeOptionalChildren(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the any option children defined for the instance.
+            </summary>
+        </member>
+        <member name="F:Opc.Ua.Gds.GetApplicationMethodState.OnCall">
+            <summary>
+            Raised when the the method is called.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.GetApplicationMethodState.Call(Opc.Ua.ISystemContext,Opc.Ua.NodeId,System.Collections.Generic.IList{System.Object},System.Collections.Generic.IList{System.Object})">
+            <summary>
+            Invokes the method, returns the result and output argument.
+            </summary>
+        </member>
+        <member name="T:Opc.Ua.Gds.GetApplicationMethodStateMethodCallHandler">
+            <summary>
+            Used to receive notifications when the method is called.
+            </summary>
+            <exclude />
+        </member>
+        <member name="T:Opc.Ua.Gds.QueryApplicationsMethodState">
+            <summary>
+            Stores an instance of the QueryApplicationsMethodType Method.
+            </summary>
+            <exclude />
+        </member>
+        <member name="M:Opc.Ua.Gds.QueryApplicationsMethodState.#ctor(Opc.Ua.NodeState)">
+            <summary>
+            Initializes the type with its default attribute values.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.QueryApplicationsMethodState.Construct(Opc.Ua.NodeState)">
+            <summary>
+            Constructs an instance of a node.
+            </summary>
+            <param name="parent">The parent.</param>
+            <returns>The new node.</returns>
+        </member>
+        <member name="M:Opc.Ua.Gds.QueryApplicationsMethodState.Initialize(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the instance.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.QueryApplicationsMethodState.InitializeOptionalChildren(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the any option children defined for the instance.
+            </summary>
+        </member>
+        <member name="F:Opc.Ua.Gds.QueryApplicationsMethodState.OnCall">
+            <summary>
+            Raised when the the method is called.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.QueryApplicationsMethodState.Call(Opc.Ua.ISystemContext,Opc.Ua.NodeId,System.Collections.Generic.IList{System.Object},System.Collections.Generic.IList{System.Object})">
+            <summary>
+            Invokes the method, returns the result and output argument.
+            </summary>
+        </member>
+        <member name="T:Opc.Ua.Gds.QueryApplicationsMethodStateMethodCallHandler">
+            <summary>
+            Used to receive notifications when the method is called.
+            </summary>
+            <exclude />
+        </member>
+        <member name="T:Opc.Ua.Gds.QueryServersMethodState">
+            <summary>
+            Stores an instance of the QueryServersMethodType Method.
+            </summary>
+            <exclude />
+        </member>
+        <member name="M:Opc.Ua.Gds.QueryServersMethodState.#ctor(Opc.Ua.NodeState)">
+            <summary>
+            Initializes the type with its default attribute values.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.QueryServersMethodState.Construct(Opc.Ua.NodeState)">
+            <summary>
+            Constructs an instance of a node.
+            </summary>
+            <param name="parent">The parent.</param>
+            <returns>The new node.</returns>
+        </member>
+        <member name="M:Opc.Ua.Gds.QueryServersMethodState.Initialize(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the instance.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.QueryServersMethodState.InitializeOptionalChildren(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the any option children defined for the instance.
+            </summary>
+        </member>
+        <member name="F:Opc.Ua.Gds.QueryServersMethodState.OnCall">
+            <summary>
+            Raised when the the method is called.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.QueryServersMethodState.Call(Opc.Ua.ISystemContext,Opc.Ua.NodeId,System.Collections.Generic.IList{System.Object},System.Collections.Generic.IList{System.Object})">
+            <summary>
+            Invokes the method, returns the result and output argument.
+            </summary>
+        </member>
+        <member name="T:Opc.Ua.Gds.QueryServersMethodStateMethodCallHandler">
+            <summary>
+            Used to receive notifications when the method is called.
+            </summary>
+            <exclude />
+        </member>
+        <member name="T:Opc.Ua.Gds.DirectoryState">
+            <summary>
+            Stores an instance of the DirectoryType ObjectType.
+            </summary>
+            <exclude />
+        </member>
+        <member name="M:Opc.Ua.Gds.DirectoryState.#ctor(Opc.Ua.NodeState)">
+            <summary>
+            Initializes the type with its default attribute values.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.DirectoryState.GetDefaultTypeDefinitionId(Opc.Ua.NamespaceTable)">
+            <summary>
+            Returns the id of the default type definition node for the instance.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.DirectoryState.Initialize(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the instance.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.DirectoryState.Initialize(Opc.Ua.ISystemContext,Opc.Ua.NodeState)">
+            <summary>
+            Initializes the instance with a node.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.DirectoryState.InitializeOptionalChildren(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the any option children defined for the instance.
+            </summary>
+        </member>
+        <member name="P:Opc.Ua.Gds.DirectoryState.Applications">
+            <remarks />
+        </member>
+        <member name="P:Opc.Ua.Gds.DirectoryState.FindApplications">
+            <remarks />
+        </member>
+        <member name="P:Opc.Ua.Gds.DirectoryState.RegisterApplication">
+            <remarks />
+        </member>
+        <member name="P:Opc.Ua.Gds.DirectoryState.UpdateApplication">
+            <remarks />
+        </member>
+        <member name="P:Opc.Ua.Gds.DirectoryState.UnregisterApplication">
+            <remarks />
+        </member>
+        <member name="P:Opc.Ua.Gds.DirectoryState.GetApplication">
+            <remarks />
+        </member>
+        <member name="P:Opc.Ua.Gds.DirectoryState.QueryApplications">
+            <remarks />
+        </member>
+        <member name="P:Opc.Ua.Gds.DirectoryState.QueryServers">
+            <remarks />
+        </member>
+        <member name="M:Opc.Ua.Gds.DirectoryState.GetChildren(Opc.Ua.ISystemContext,System.Collections.Generic.IList{Opc.Ua.BaseInstanceState})">
+            <summary>
+            Populates a list with the children that belong to the node.
+            </summary>
+            <param name="context">The context for the system being accessed.</param>
+            <param name="children">The list of children to populate.</param>
+        </member>
+        <member name="M:Opc.Ua.Gds.DirectoryState.FindChild(Opc.Ua.ISystemContext,Opc.Ua.QualifiedName,System.Boolean,Opc.Ua.BaseInstanceState)">
+            <summary>
+            Finds the child with the specified browse name.
+            </summary>
+        </member>
+        <member name="T:Opc.Ua.Gds.ApplicationRegistrationChangedAuditEventState">
+            <summary>
+            Stores an instance of the ApplicationRegistrationChangedAuditEventType ObjectType.
+            </summary>
+            <exclude />
+        </member>
+        <member name="M:Opc.Ua.Gds.ApplicationRegistrationChangedAuditEventState.#ctor(Opc.Ua.NodeState)">
+            <summary>
+            Initializes the type with its default attribute values.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.ApplicationRegistrationChangedAuditEventState.GetDefaultTypeDefinitionId(Opc.Ua.NamespaceTable)">
+            <summary>
+            Returns the id of the default type definition node for the instance.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.ApplicationRegistrationChangedAuditEventState.Initialize(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the instance.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.ApplicationRegistrationChangedAuditEventState.Initialize(Opc.Ua.ISystemContext,Opc.Ua.NodeState)">
+            <summary>
+            Initializes the instance with a node.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.ApplicationRegistrationChangedAuditEventState.InitializeOptionalChildren(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the any option children defined for the instance.
+            </summary>
+        </member>
+        <member name="T:Opc.Ua.Gds.StartSigningRequestMethodState">
+            <summary>
+            Stores an instance of the StartSigningRequestMethodType Method.
+            </summary>
+            <exclude />
+        </member>
+        <member name="M:Opc.Ua.Gds.StartSigningRequestMethodState.#ctor(Opc.Ua.NodeState)">
+            <summary>
+            Initializes the type with its default attribute values.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.StartSigningRequestMethodState.Construct(Opc.Ua.NodeState)">
+            <summary>
+            Constructs an instance of a node.
+            </summary>
+            <param name="parent">The parent.</param>
+            <returns>The new node.</returns>
+        </member>
+        <member name="M:Opc.Ua.Gds.StartSigningRequestMethodState.Initialize(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the instance.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.StartSigningRequestMethodState.InitializeOptionalChildren(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the any option children defined for the instance.
+            </summary>
+        </member>
+        <member name="F:Opc.Ua.Gds.StartSigningRequestMethodState.OnCall">
+            <summary>
+            Raised when the the method is called.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.StartSigningRequestMethodState.Call(Opc.Ua.ISystemContext,Opc.Ua.NodeId,System.Collections.Generic.IList{System.Object},System.Collections.Generic.IList{System.Object})">
+            <summary>
+            Invokes the method, returns the result and output argument.
+            </summary>
+        </member>
+        <member name="T:Opc.Ua.Gds.StartSigningRequestMethodStateMethodCallHandler">
+            <summary>
+            Used to receive notifications when the method is called.
+            </summary>
+            <exclude />
+        </member>
+        <member name="T:Opc.Ua.Gds.StartNewKeyPairRequestMethodState">
+            <summary>
+            Stores an instance of the StartNewKeyPairRequestMethodType Method.
+            </summary>
+            <exclude />
+        </member>
+        <member name="M:Opc.Ua.Gds.StartNewKeyPairRequestMethodState.#ctor(Opc.Ua.NodeState)">
+            <summary>
+            Initializes the type with its default attribute values.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.StartNewKeyPairRequestMethodState.Construct(Opc.Ua.NodeState)">
+            <summary>
+            Constructs an instance of a node.
+            </summary>
+            <param name="parent">The parent.</param>
+            <returns>The new node.</returns>
+        </member>
+        <member name="M:Opc.Ua.Gds.StartNewKeyPairRequestMethodState.Initialize(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the instance.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.StartNewKeyPairRequestMethodState.InitializeOptionalChildren(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the any option children defined for the instance.
+            </summary>
+        </member>
+        <member name="F:Opc.Ua.Gds.StartNewKeyPairRequestMethodState.OnCall">
+            <summary>
+            Raised when the the method is called.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.StartNewKeyPairRequestMethodState.Call(Opc.Ua.ISystemContext,Opc.Ua.NodeId,System.Collections.Generic.IList{System.Object},System.Collections.Generic.IList{System.Object})">
+            <summary>
+            Invokes the method, returns the result and output argument.
+            </summary>
+        </member>
+        <member name="T:Opc.Ua.Gds.StartNewKeyPairRequestMethodStateMethodCallHandler">
+            <summary>
+            Used to receive notifications when the method is called.
+            </summary>
+            <exclude />
+        </member>
+        <member name="T:Opc.Ua.Gds.FinishRequestMethodState">
+            <summary>
+            Stores an instance of the FinishRequestMethodType Method.
+            </summary>
+            <exclude />
+        </member>
+        <member name="M:Opc.Ua.Gds.FinishRequestMethodState.#ctor(Opc.Ua.NodeState)">
+            <summary>
+            Initializes the type with its default attribute values.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.FinishRequestMethodState.Construct(Opc.Ua.NodeState)">
+            <summary>
+            Constructs an instance of a node.
+            </summary>
+            <param name="parent">The parent.</param>
+            <returns>The new node.</returns>
+        </member>
+        <member name="M:Opc.Ua.Gds.FinishRequestMethodState.Initialize(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the instance.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.FinishRequestMethodState.InitializeOptionalChildren(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the any option children defined for the instance.
+            </summary>
+        </member>
+        <member name="F:Opc.Ua.Gds.FinishRequestMethodState.OnCall">
+            <summary>
+            Raised when the the method is called.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.FinishRequestMethodState.Call(Opc.Ua.ISystemContext,Opc.Ua.NodeId,System.Collections.Generic.IList{System.Object},System.Collections.Generic.IList{System.Object})">
+            <summary>
+            Invokes the method, returns the result and output argument.
+            </summary>
+        </member>
+        <member name="T:Opc.Ua.Gds.FinishRequestMethodStateMethodCallHandler">
+            <summary>
+            Used to receive notifications when the method is called.
+            </summary>
+            <exclude />
+        </member>
+        <member name="T:Opc.Ua.Gds.GetCertificateGroupsMethodState">
+            <summary>
+            Stores an instance of the GetCertificateGroupsMethodType Method.
+            </summary>
+            <exclude />
+        </member>
+        <member name="M:Opc.Ua.Gds.GetCertificateGroupsMethodState.#ctor(Opc.Ua.NodeState)">
+            <summary>
+            Initializes the type with its default attribute values.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.GetCertificateGroupsMethodState.Construct(Opc.Ua.NodeState)">
+            <summary>
+            Constructs an instance of a node.
+            </summary>
+            <param name="parent">The parent.</param>
+            <returns>The new node.</returns>
+        </member>
+        <member name="M:Opc.Ua.Gds.GetCertificateGroupsMethodState.Initialize(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the instance.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.GetCertificateGroupsMethodState.InitializeOptionalChildren(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the any option children defined for the instance.
+            </summary>
+        </member>
+        <member name="F:Opc.Ua.Gds.GetCertificateGroupsMethodState.OnCall">
+            <summary>
+            Raised when the the method is called.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.GetCertificateGroupsMethodState.Call(Opc.Ua.ISystemContext,Opc.Ua.NodeId,System.Collections.Generic.IList{System.Object},System.Collections.Generic.IList{System.Object})">
+            <summary>
+            Invokes the method, returns the result and output argument.
+            </summary>
+        </member>
+        <member name="T:Opc.Ua.Gds.GetCertificateGroupsMethodStateMethodCallHandler">
+            <summary>
+            Used to receive notifications when the method is called.
+            </summary>
+            <exclude />
+        </member>
+        <member name="T:Opc.Ua.Gds.GetTrustListMethodState">
+            <summary>
+            Stores an instance of the GetTrustListMethodType Method.
+            </summary>
+            <exclude />
+        </member>
+        <member name="M:Opc.Ua.Gds.GetTrustListMethodState.#ctor(Opc.Ua.NodeState)">
+            <summary>
+            Initializes the type with its default attribute values.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.GetTrustListMethodState.Construct(Opc.Ua.NodeState)">
+            <summary>
+            Constructs an instance of a node.
+            </summary>
+            <param name="parent">The parent.</param>
+            <returns>The new node.</returns>
+        </member>
+        <member name="M:Opc.Ua.Gds.GetTrustListMethodState.Initialize(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the instance.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.GetTrustListMethodState.InitializeOptionalChildren(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the any option children defined for the instance.
+            </summary>
+        </member>
+        <member name="F:Opc.Ua.Gds.GetTrustListMethodState.OnCall">
+            <summary>
+            Raised when the the method is called.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.GetTrustListMethodState.Call(Opc.Ua.ISystemContext,Opc.Ua.NodeId,System.Collections.Generic.IList{System.Object},System.Collections.Generic.IList{System.Object})">
+            <summary>
+            Invokes the method, returns the result and output argument.
+            </summary>
+        </member>
+        <member name="T:Opc.Ua.Gds.GetTrustListMethodStateMethodCallHandler">
+            <summary>
+            Used to receive notifications when the method is called.
+            </summary>
+            <exclude />
+        </member>
+        <member name="T:Opc.Ua.Gds.RevokeCertificateMethodState">
+            <summary>
+            Stores an instance of the RevokeCertificateMethodType Method.
+            </summary>
+            <exclude />
+        </member>
+        <member name="M:Opc.Ua.Gds.RevokeCertificateMethodState.#ctor(Opc.Ua.NodeState)">
+            <summary>
+            Initializes the type with its default attribute values.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.RevokeCertificateMethodState.Construct(Opc.Ua.NodeState)">
+            <summary>
+            Constructs an instance of a node.
+            </summary>
+            <param name="parent">The parent.</param>
+            <returns>The new node.</returns>
+        </member>
+        <member name="M:Opc.Ua.Gds.RevokeCertificateMethodState.Initialize(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the instance.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.RevokeCertificateMethodState.InitializeOptionalChildren(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the any option children defined for the instance.
+            </summary>
+        </member>
+        <member name="F:Opc.Ua.Gds.RevokeCertificateMethodState.OnCall">
+            <summary>
+            Raised when the the method is called.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.RevokeCertificateMethodState.Call(Opc.Ua.ISystemContext,Opc.Ua.NodeId,System.Collections.Generic.IList{System.Object},System.Collections.Generic.IList{System.Object})">
+            <summary>
+            Invokes the method, returns the result and output argument.
+            </summary>
+        </member>
+        <member name="T:Opc.Ua.Gds.RevokeCertificateMethodStateMethodCallHandler">
+            <summary>
+            Used to receive notifications when the method is called.
+            </summary>
+            <exclude />
+        </member>
+        <member name="T:Opc.Ua.Gds.GetCertificateStatusMethodState">
+            <summary>
+            Stores an instance of the GetCertificateStatusMethodType Method.
+            </summary>
+            <exclude />
+        </member>
+        <member name="M:Opc.Ua.Gds.GetCertificateStatusMethodState.#ctor(Opc.Ua.NodeState)">
+            <summary>
+            Initializes the type with its default attribute values.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.GetCertificateStatusMethodState.Construct(Opc.Ua.NodeState)">
+            <summary>
+            Constructs an instance of a node.
+            </summary>
+            <param name="parent">The parent.</param>
+            <returns>The new node.</returns>
+        </member>
+        <member name="M:Opc.Ua.Gds.GetCertificateStatusMethodState.Initialize(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the instance.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.GetCertificateStatusMethodState.InitializeOptionalChildren(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the any option children defined for the instance.
+            </summary>
+        </member>
+        <member name="F:Opc.Ua.Gds.GetCertificateStatusMethodState.OnCall">
+            <summary>
+            Raised when the the method is called.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.GetCertificateStatusMethodState.Call(Opc.Ua.ISystemContext,Opc.Ua.NodeId,System.Collections.Generic.IList{System.Object},System.Collections.Generic.IList{System.Object})">
+            <summary>
+            Invokes the method, returns the result and output argument.
+            </summary>
+        </member>
+        <member name="T:Opc.Ua.Gds.GetCertificateStatusMethodStateMethodCallHandler">
+            <summary>
+            Used to receive notifications when the method is called.
+            </summary>
+            <exclude />
+        </member>
+        <member name="T:Opc.Ua.Gds.CertificateDirectoryState">
+            <summary>
+            Stores an instance of the CertificateDirectoryType ObjectType.
+            </summary>
+            <exclude />
+        </member>
+        <member name="M:Opc.Ua.Gds.CertificateDirectoryState.#ctor(Opc.Ua.NodeState)">
+            <summary>
+            Initializes the type with its default attribute values.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.CertificateDirectoryState.GetDefaultTypeDefinitionId(Opc.Ua.NamespaceTable)">
+            <summary>
+            Returns the id of the default type definition node for the instance.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.CertificateDirectoryState.Initialize(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the instance.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.CertificateDirectoryState.Initialize(Opc.Ua.ISystemContext,Opc.Ua.NodeState)">
+            <summary>
+            Initializes the instance with a node.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.CertificateDirectoryState.InitializeOptionalChildren(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the any option children defined for the instance.
+            </summary>
+        </member>
+        <member name="P:Opc.Ua.Gds.CertificateDirectoryState.CertificateGroups">
+            <remarks />
+        </member>
+        <member name="P:Opc.Ua.Gds.CertificateDirectoryState.StartSigningRequest">
+            <remarks />
+        </member>
+        <member name="P:Opc.Ua.Gds.CertificateDirectoryState.StartNewKeyPairRequest">
+            <remarks />
+        </member>
+        <member name="P:Opc.Ua.Gds.CertificateDirectoryState.FinishRequest">
+            <remarks />
+        </member>
+        <member name="P:Opc.Ua.Gds.CertificateDirectoryState.RevokeCertificate">
+            <remarks />
+        </member>
+        <member name="P:Opc.Ua.Gds.CertificateDirectoryState.GetCertificateGroups">
+            <remarks />
+        </member>
+        <member name="P:Opc.Ua.Gds.CertificateDirectoryState.GetTrustList">
+            <remarks />
+        </member>
+        <member name="P:Opc.Ua.Gds.CertificateDirectoryState.GetCertificateStatus">
+            <remarks />
+        </member>
+        <member name="M:Opc.Ua.Gds.CertificateDirectoryState.GetChildren(Opc.Ua.ISystemContext,System.Collections.Generic.IList{Opc.Ua.BaseInstanceState})">
+            <summary>
+            Populates a list with the children that belong to the node.
+            </summary>
+            <param name="context">The context for the system being accessed.</param>
+            <param name="children">The list of children to populate.</param>
+        </member>
+        <member name="M:Opc.Ua.Gds.CertificateDirectoryState.FindChild(Opc.Ua.ISystemContext,Opc.Ua.QualifiedName,System.Boolean,Opc.Ua.BaseInstanceState)">
+            <summary>
+            Finds the child with the specified browse name.
+            </summary>
+        </member>
+        <member name="T:Opc.Ua.Gds.CertificateRequestedAuditEventState">
+            <summary>
+            Stores an instance of the CertificateRequestedAuditEventType ObjectType.
+            </summary>
+            <exclude />
+        </member>
+        <member name="M:Opc.Ua.Gds.CertificateRequestedAuditEventState.#ctor(Opc.Ua.NodeState)">
+            <summary>
+            Initializes the type with its default attribute values.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.CertificateRequestedAuditEventState.GetDefaultTypeDefinitionId(Opc.Ua.NamespaceTable)">
+            <summary>
+            Returns the id of the default type definition node for the instance.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.CertificateRequestedAuditEventState.Initialize(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the instance.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.CertificateRequestedAuditEventState.Initialize(Opc.Ua.ISystemContext,Opc.Ua.NodeState)">
+            <summary>
+            Initializes the instance with a node.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.CertificateRequestedAuditEventState.InitializeOptionalChildren(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the any option children defined for the instance.
+            </summary>
+        </member>
+        <member name="P:Opc.Ua.Gds.CertificateRequestedAuditEventState.CertificateGroup">
+            <remarks />
+        </member>
+        <member name="P:Opc.Ua.Gds.CertificateRequestedAuditEventState.CertificateType">
+            <remarks />
+        </member>
+        <member name="M:Opc.Ua.Gds.CertificateRequestedAuditEventState.GetChildren(Opc.Ua.ISystemContext,System.Collections.Generic.IList{Opc.Ua.BaseInstanceState})">
+            <summary>
+            Populates a list with the children that belong to the node.
+            </summary>
+            <param name="context">The context for the system being accessed.</param>
+            <param name="children">The list of children to populate.</param>
+        </member>
+        <member name="M:Opc.Ua.Gds.CertificateRequestedAuditEventState.FindChild(Opc.Ua.ISystemContext,Opc.Ua.QualifiedName,System.Boolean,Opc.Ua.BaseInstanceState)">
+            <summary>
+            Finds the child with the specified browse name.
+            </summary>
+        </member>
+        <member name="T:Opc.Ua.Gds.CertificateDeliveredAuditEventState">
+            <summary>
+            Stores an instance of the CertificateDeliveredAuditEventType ObjectType.
+            </summary>
+            <exclude />
+        </member>
+        <member name="M:Opc.Ua.Gds.CertificateDeliveredAuditEventState.#ctor(Opc.Ua.NodeState)">
+            <summary>
+            Initializes the type with its default attribute values.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.CertificateDeliveredAuditEventState.GetDefaultTypeDefinitionId(Opc.Ua.NamespaceTable)">
+            <summary>
+            Returns the id of the default type definition node for the instance.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.CertificateDeliveredAuditEventState.Initialize(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the instance.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.CertificateDeliveredAuditEventState.Initialize(Opc.Ua.ISystemContext,Opc.Ua.NodeState)">
+            <summary>
+            Initializes the instance with a node.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.CertificateDeliveredAuditEventState.InitializeOptionalChildren(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the any option children defined for the instance.
+            </summary>
+        </member>
+        <member name="P:Opc.Ua.Gds.CertificateDeliveredAuditEventState.CertificateGroup">
+            <remarks />
+        </member>
+        <member name="P:Opc.Ua.Gds.CertificateDeliveredAuditEventState.CertificateType">
+            <remarks />
+        </member>
+        <member name="M:Opc.Ua.Gds.CertificateDeliveredAuditEventState.GetChildren(Opc.Ua.ISystemContext,System.Collections.Generic.IList{Opc.Ua.BaseInstanceState})">
+            <summary>
+            Populates a list with the children that belong to the node.
+            </summary>
+            <param name="context">The context for the system being accessed.</param>
+            <param name="children">The list of children to populate.</param>
+        </member>
+        <member name="M:Opc.Ua.Gds.CertificateDeliveredAuditEventState.FindChild(Opc.Ua.ISystemContext,Opc.Ua.QualifiedName,System.Boolean,Opc.Ua.BaseInstanceState)">
+            <summary>
+            Finds the child with the specified browse name.
+            </summary>
+        </member>
+        <member name="T:Opc.Ua.Gds.KeyCredentialServiceState">
+            <summary>
+            Stores an instance of the KeyCredentialServiceType ObjectType.
+            </summary>
+            <exclude />
+        </member>
+        <member name="M:Opc.Ua.Gds.KeyCredentialServiceState.#ctor(Opc.Ua.NodeState)">
+            <summary>
+            Initializes the type with its default attribute values.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.KeyCredentialServiceState.GetDefaultTypeDefinitionId(Opc.Ua.NamespaceTable)">
+            <summary>
+            Returns the id of the default type definition node for the instance.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.KeyCredentialServiceState.Initialize(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the instance.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.KeyCredentialServiceState.Initialize(Opc.Ua.ISystemContext,Opc.Ua.NodeState)">
+            <summary>
+            Initializes the instance with a node.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.KeyCredentialServiceState.InitializeOptionalChildren(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the any option children defined for the instance.
+            </summary>
+        </member>
+        <member name="P:Opc.Ua.Gds.KeyCredentialServiceState.ResourceUri">
+            <remarks />
+        </member>
+        <member name="P:Opc.Ua.Gds.KeyCredentialServiceState.ProfileUris">
+            <remarks />
+        </member>
+        <member name="P:Opc.Ua.Gds.KeyCredentialServiceState.StartRequest">
+            <remarks />
+        </member>
+        <member name="P:Opc.Ua.Gds.KeyCredentialServiceState.FinishRequest">
+            <remarks />
+        </member>
+        <member name="P:Opc.Ua.Gds.KeyCredentialServiceState.Revoke">
+            <remarks />
+        </member>
+        <member name="M:Opc.Ua.Gds.KeyCredentialServiceState.GetChildren(Opc.Ua.ISystemContext,System.Collections.Generic.IList{Opc.Ua.BaseInstanceState})">
+            <summary>
+            Populates a list with the children that belong to the node.
+            </summary>
+            <param name="context">The context for the system being accessed.</param>
+            <param name="children">The list of children to populate.</param>
+        </member>
+        <member name="M:Opc.Ua.Gds.KeyCredentialServiceState.FindChild(Opc.Ua.ISystemContext,Opc.Ua.QualifiedName,System.Boolean,Opc.Ua.BaseInstanceState)">
+            <summary>
+            Finds the child with the specified browse name.
+            </summary>
+        </member>
+        <member name="T:Opc.Ua.Gds.KeyCredentialStartRequestMethodState">
+            <summary>
+            Stores an instance of the KeyCredentialStartRequestMethodType Method.
+            </summary>
+            <exclude />
+        </member>
+        <member name="M:Opc.Ua.Gds.KeyCredentialStartRequestMethodState.#ctor(Opc.Ua.NodeState)">
+            <summary>
+            Initializes the type with its default attribute values.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.KeyCredentialStartRequestMethodState.Construct(Opc.Ua.NodeState)">
+            <summary>
+            Constructs an instance of a node.
+            </summary>
+            <param name="parent">The parent.</param>
+            <returns>The new node.</returns>
+        </member>
+        <member name="M:Opc.Ua.Gds.KeyCredentialStartRequestMethodState.Initialize(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the instance.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.KeyCredentialStartRequestMethodState.InitializeOptionalChildren(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the any option children defined for the instance.
+            </summary>
+        </member>
+        <member name="F:Opc.Ua.Gds.KeyCredentialStartRequestMethodState.OnCall">
+            <summary>
+            Raised when the the method is called.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.KeyCredentialStartRequestMethodState.Call(Opc.Ua.ISystemContext,Opc.Ua.NodeId,System.Collections.Generic.IList{System.Object},System.Collections.Generic.IList{System.Object})">
+            <summary>
+            Invokes the method, returns the result and output argument.
+            </summary>
+        </member>
+        <member name="T:Opc.Ua.Gds.KeyCredentialStartRequestMethodStateMethodCallHandler">
+            <summary>
+            Used to receive notifications when the method is called.
+            </summary>
+            <exclude />
+        </member>
+        <member name="T:Opc.Ua.Gds.KeyCredentialFinishRequestMethodState">
+            <summary>
+            Stores an instance of the KeyCredentialFinishRequestMethodType Method.
+            </summary>
+            <exclude />
+        </member>
+        <member name="M:Opc.Ua.Gds.KeyCredentialFinishRequestMethodState.#ctor(Opc.Ua.NodeState)">
+            <summary>
+            Initializes the type with its default attribute values.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.KeyCredentialFinishRequestMethodState.Construct(Opc.Ua.NodeState)">
+            <summary>
+            Constructs an instance of a node.
+            </summary>
+            <param name="parent">The parent.</param>
+            <returns>The new node.</returns>
+        </member>
+        <member name="M:Opc.Ua.Gds.KeyCredentialFinishRequestMethodState.Initialize(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the instance.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.KeyCredentialFinishRequestMethodState.InitializeOptionalChildren(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the any option children defined for the instance.
+            </summary>
+        </member>
+        <member name="F:Opc.Ua.Gds.KeyCredentialFinishRequestMethodState.OnCall">
+            <summary>
+            Raised when the the method is called.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.KeyCredentialFinishRequestMethodState.Call(Opc.Ua.ISystemContext,Opc.Ua.NodeId,System.Collections.Generic.IList{System.Object},System.Collections.Generic.IList{System.Object})">
+            <summary>
+            Invokes the method, returns the result and output argument.
+            </summary>
+        </member>
+        <member name="T:Opc.Ua.Gds.KeyCredentialFinishRequestMethodStateMethodCallHandler">
+            <summary>
+            Used to receive notifications when the method is called.
+            </summary>
+            <exclude />
+        </member>
+        <member name="T:Opc.Ua.Gds.KeyCredentialRevokeMethodState">
+            <summary>
+            Stores an instance of the KeyCredentialRevokeMethodType Method.
+            </summary>
+            <exclude />
+        </member>
+        <member name="M:Opc.Ua.Gds.KeyCredentialRevokeMethodState.#ctor(Opc.Ua.NodeState)">
+            <summary>
+            Initializes the type with its default attribute values.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.KeyCredentialRevokeMethodState.Construct(Opc.Ua.NodeState)">
+            <summary>
+            Constructs an instance of a node.
+            </summary>
+            <param name="parent">The parent.</param>
+            <returns>The new node.</returns>
+        </member>
+        <member name="M:Opc.Ua.Gds.KeyCredentialRevokeMethodState.Initialize(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the instance.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.KeyCredentialRevokeMethodState.InitializeOptionalChildren(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the any option children defined for the instance.
+            </summary>
+        </member>
+        <member name="F:Opc.Ua.Gds.KeyCredentialRevokeMethodState.OnCall">
+            <summary>
+            Raised when the the method is called.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.KeyCredentialRevokeMethodState.Call(Opc.Ua.ISystemContext,Opc.Ua.NodeId,System.Collections.Generic.IList{System.Object},System.Collections.Generic.IList{System.Object})">
+            <summary>
+            Invokes the method, returns the result and output argument.
+            </summary>
+        </member>
+        <member name="T:Opc.Ua.Gds.KeyCredentialRevokeMethodStateMethodCallHandler">
+            <summary>
+            Used to receive notifications when the method is called.
+            </summary>
+            <exclude />
+        </member>
+        <member name="T:Opc.Ua.Gds.KeyCredentialRequestedAuditEventState">
+            <summary>
+            Stores an instance of the KeyCredentialRequestedAuditEventType ObjectType.
+            </summary>
+            <exclude />
+        </member>
+        <member name="M:Opc.Ua.Gds.KeyCredentialRequestedAuditEventState.#ctor(Opc.Ua.NodeState)">
+            <summary>
+            Initializes the type with its default attribute values.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.KeyCredentialRequestedAuditEventState.GetDefaultTypeDefinitionId(Opc.Ua.NamespaceTable)">
+            <summary>
+            Returns the id of the default type definition node for the instance.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.KeyCredentialRequestedAuditEventState.Initialize(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the instance.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.KeyCredentialRequestedAuditEventState.Initialize(Opc.Ua.ISystemContext,Opc.Ua.NodeState)">
+            <summary>
+            Initializes the instance with a node.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.KeyCredentialRequestedAuditEventState.InitializeOptionalChildren(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the any option children defined for the instance.
+            </summary>
+        </member>
+        <member name="T:Opc.Ua.Gds.KeyCredentialDeliveredAuditEventState">
+            <summary>
+            Stores an instance of the KeyCredentialDeliveredAuditEventType ObjectType.
+            </summary>
+            <exclude />
+        </member>
+        <member name="M:Opc.Ua.Gds.KeyCredentialDeliveredAuditEventState.#ctor(Opc.Ua.NodeState)">
+            <summary>
+            Initializes the type with its default attribute values.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.KeyCredentialDeliveredAuditEventState.GetDefaultTypeDefinitionId(Opc.Ua.NamespaceTable)">
+            <summary>
+            Returns the id of the default type definition node for the instance.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.KeyCredentialDeliveredAuditEventState.Initialize(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the instance.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.KeyCredentialDeliveredAuditEventState.Initialize(Opc.Ua.ISystemContext,Opc.Ua.NodeState)">
+            <summary>
+            Initializes the instance with a node.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.KeyCredentialDeliveredAuditEventState.InitializeOptionalChildren(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the any option children defined for the instance.
+            </summary>
+        </member>
+        <member name="T:Opc.Ua.Gds.KeyCredentialRevokedAuditEventState">
+            <summary>
+            Stores an instance of the KeyCredentialRevokedAuditEventType ObjectType.
+            </summary>
+            <exclude />
+        </member>
+        <member name="M:Opc.Ua.Gds.KeyCredentialRevokedAuditEventState.#ctor(Opc.Ua.NodeState)">
+            <summary>
+            Initializes the type with its default attribute values.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.KeyCredentialRevokedAuditEventState.GetDefaultTypeDefinitionId(Opc.Ua.NamespaceTable)">
+            <summary>
+            Returns the id of the default type definition node for the instance.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.KeyCredentialRevokedAuditEventState.Initialize(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the instance.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.KeyCredentialRevokedAuditEventState.Initialize(Opc.Ua.ISystemContext,Opc.Ua.NodeState)">
+            <summary>
+            Initializes the instance with a node.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.KeyCredentialRevokedAuditEventState.InitializeOptionalChildren(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the any option children defined for the instance.
+            </summary>
+        </member>
+        <member name="T:Opc.Ua.Gds.AuthorizationServiceState">
+            <summary>
+            Stores an instance of the AuthorizationServiceType ObjectType.
+            </summary>
+            <exclude />
+        </member>
+        <member name="M:Opc.Ua.Gds.AuthorizationServiceState.#ctor(Opc.Ua.NodeState)">
+            <summary>
+            Initializes the type with its default attribute values.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.AuthorizationServiceState.GetDefaultTypeDefinitionId(Opc.Ua.NamespaceTable)">
+            <summary>
+            Returns the id of the default type definition node for the instance.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.AuthorizationServiceState.Initialize(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the instance.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.AuthorizationServiceState.Initialize(Opc.Ua.ISystemContext,Opc.Ua.NodeState)">
+            <summary>
+            Initializes the instance with a node.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.AuthorizationServiceState.InitializeOptionalChildren(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the any option children defined for the instance.
+            </summary>
+        </member>
+        <member name="P:Opc.Ua.Gds.AuthorizationServiceState.ServiceUri">
+            <remarks />
+        </member>
+        <member name="P:Opc.Ua.Gds.AuthorizationServiceState.ServiceCertificate">
+            <remarks />
+        </member>
+        <member name="P:Opc.Ua.Gds.AuthorizationServiceState.UserTokenPolicies">
+            <remarks />
+        </member>
+        <member name="P:Opc.Ua.Gds.AuthorizationServiceState.GetServiceDescription">
+            <remarks />
+        </member>
+        <member name="P:Opc.Ua.Gds.AuthorizationServiceState.RequestAccessToken">
+            <remarks />
+        </member>
+        <member name="M:Opc.Ua.Gds.AuthorizationServiceState.GetChildren(Opc.Ua.ISystemContext,System.Collections.Generic.IList{Opc.Ua.BaseInstanceState})">
+            <summary>
+            Populates a list with the children that belong to the node.
+            </summary>
+            <param name="context">The context for the system being accessed.</param>
+            <param name="children">The list of children to populate.</param>
+        </member>
+        <member name="M:Opc.Ua.Gds.AuthorizationServiceState.FindChild(Opc.Ua.ISystemContext,Opc.Ua.QualifiedName,System.Boolean,Opc.Ua.BaseInstanceState)">
+            <summary>
+            Finds the child with the specified browse name.
+            </summary>
+        </member>
+        <member name="T:Opc.Ua.Gds.GetServiceDescriptionMethodState">
+            <summary>
+            Stores an instance of the GetServiceDescriptionMethodType Method.
+            </summary>
+            <exclude />
+        </member>
+        <member name="M:Opc.Ua.Gds.GetServiceDescriptionMethodState.#ctor(Opc.Ua.NodeState)">
+            <summary>
+            Initializes the type with its default attribute values.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.GetServiceDescriptionMethodState.Construct(Opc.Ua.NodeState)">
+            <summary>
+            Constructs an instance of a node.
+            </summary>
+            <param name="parent">The parent.</param>
+            <returns>The new node.</returns>
+        </member>
+        <member name="M:Opc.Ua.Gds.GetServiceDescriptionMethodState.Initialize(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the instance.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.GetServiceDescriptionMethodState.InitializeOptionalChildren(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the any option children defined for the instance.
+            </summary>
+        </member>
+        <member name="F:Opc.Ua.Gds.GetServiceDescriptionMethodState.OnCall">
+            <summary>
+            Raised when the the method is called.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.GetServiceDescriptionMethodState.Call(Opc.Ua.ISystemContext,Opc.Ua.NodeId,System.Collections.Generic.IList{System.Object},System.Collections.Generic.IList{System.Object})">
+            <summary>
+            Invokes the method, returns the result and output argument.
+            </summary>
+        </member>
+        <member name="T:Opc.Ua.Gds.GetServiceDescriptionMethodStateMethodCallHandler">
+            <summary>
+            Used to receive notifications when the method is called.
+            </summary>
+            <exclude />
+        </member>
+        <member name="T:Opc.Ua.Gds.RequestAccessTokenMethodState">
+            <summary>
+            Stores an instance of the RequestAccessTokenMethodType Method.
+            </summary>
+            <exclude />
+        </member>
+        <member name="M:Opc.Ua.Gds.RequestAccessTokenMethodState.#ctor(Opc.Ua.NodeState)">
+            <summary>
+            Initializes the type with its default attribute values.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.RequestAccessTokenMethodState.Construct(Opc.Ua.NodeState)">
+            <summary>
+            Constructs an instance of a node.
+            </summary>
+            <param name="parent">The parent.</param>
+            <returns>The new node.</returns>
+        </member>
+        <member name="M:Opc.Ua.Gds.RequestAccessTokenMethodState.Initialize(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the instance.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.RequestAccessTokenMethodState.InitializeOptionalChildren(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the any option children defined for the instance.
+            </summary>
+        </member>
+        <member name="F:Opc.Ua.Gds.RequestAccessTokenMethodState.OnCall">
+            <summary>
+            Raised when the the method is called.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.RequestAccessTokenMethodState.Call(Opc.Ua.ISystemContext,Opc.Ua.NodeId,System.Collections.Generic.IList{System.Object},System.Collections.Generic.IList{System.Object})">
+            <summary>
+            Invokes the method, returns the result and output argument.
+            </summary>
+        </member>
+        <member name="T:Opc.Ua.Gds.RequestAccessTokenMethodStateMethodCallHandler">
+            <summary>
+            Used to receive notifications when the method is called.
+            </summary>
+            <exclude />
+        </member>
+        <member name="T:Opc.Ua.Gds.AccessTokenIssuedAuditEventState">
+            <summary>
+            Stores an instance of the AccessTokenIssuedAuditEventType ObjectType.
+            </summary>
+            <exclude />
+        </member>
+        <member name="M:Opc.Ua.Gds.AccessTokenIssuedAuditEventState.#ctor(Opc.Ua.NodeState)">
+            <summary>
+            Initializes the type with its default attribute values.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.AccessTokenIssuedAuditEventState.GetDefaultTypeDefinitionId(Opc.Ua.NamespaceTable)">
+            <summary>
+            Returns the id of the default type definition node for the instance.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.AccessTokenIssuedAuditEventState.Initialize(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the instance.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.AccessTokenIssuedAuditEventState.Initialize(Opc.Ua.ISystemContext,Opc.Ua.NodeState)">
+            <summary>
+            Initializes the instance with a node.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Gds.AccessTokenIssuedAuditEventState.InitializeOptionalChildren(Opc.Ua.ISystemContext)">
+            <summary>
+            Initializes the any option children defined for the instance.
+            </summary>
+        </member>
+    </members>
+</doc>

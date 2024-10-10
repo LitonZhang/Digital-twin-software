@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>OpcUaHelper</id>
+    <version>2.1.3</version>
+    <authors>Richard.Hu</authors>
+    <owners>Richard.Hu</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <projectUrl>https://github.com/dathlin/OpcUaHelper</projectUrl>
+    <description>OPC UA客户端组件，提供一个opc ua的二次扩展类，方便的读写节点，浏览节点，并实现一个节点浏览器。</description>
+    <summary>opc ua客户端组件</summary>
+    <releaseNotes>1. 更新官方库引用到 1.4.365.23 版本。
+2. 根据最新的官方库，适配了代码，优化了连接信息。</releaseNotes>
+    <copyright>Copyright by Richard.Hu</copyright>
+    <language>zh-CN</language>
+    <tags>opc ua</tags>
+    <dependencies>
+      <group targetFramework=".NETFramework4.6.1">
+        <dependency id="OPCFoundation.NetStandard.Opc.Ua" version="1.4.365.23" />
+      </group>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="OPCFoundation.NetStandard.Opc.Ua" version="1.4.365.23" />
+      </group>
+      <group targetFramework=".NETStandard2.1">
+        <dependency id="OPCFoundation.NetStandard.Opc.Ua" version="1.4.365.23" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>
